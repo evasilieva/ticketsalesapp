@@ -1,0 +1,29 @@
+<div>
+  <ng-container *ngIf="blockLoaded">
+    <div>
+      <p>Количество элементов: {{tickets.length}}</p>
+      <p>Активный элементов {{blockDirective.activeElementIndex}}</p>
+    </div>
+  </ng-container>
+
+  <div>
+    <input #ticketSearch [(ngModel)]="ticketSearchValue" type="text" pInputText/>
+  </div>
+  <div appBlocksStyle
+       *ngIf="tickets"
+       #tourWrap
+       #blockDirective='blockStyle'
+       [selector]="'.ticket-item'"
+       [initFirst]=false
+       (renderComplete)="directiveRenderComplete()"
+       class="ticket-items-list d-flex flex-wrap   align-items-center justify-content-around">
+    <div
+      *ngFor="let ticket of tickets; let i = index"
+      (click)="goToTicketInfoPage(ticket)"
+      class="ticket-item col-3 m-2 mt-2">
+      <div class="ticket-title">{{ticket.name}}</div>
+      <img class="img-responsive" src="http://localhost:3000/public/images/{{ticket.img}}" alt="ticket image"/>
+    </div>
+  </div>
+
+</div>

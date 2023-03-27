@@ -1,0 +1,27 @@
+<div class="d-flex flex-column col-4">
+  <div>
+    <span class="mx-3">Логин</span>
+    <input type="text" class="mb-2" pInputText [(ngModel)]="login" placeholder="login"/>
+  </div>
+  <div>
+    <span class="mx-3">Пароль</span>
+    <input type="password" class="mb-2" pInputText [(ngModel)]="password"/>
+  </div>
+  <ng-template [ngIf]="showCardNumber" ]>
+    <div class="mt-3">
+      <span class="mx-3">Есть карта</span>
+      <p-checkbox class="mb-2" name="groupname" (onChange)="onVipStatusSelected($event)" value="val1"
+                  [(ngModel)]="selectedValue" [binary]="true">Есть карта
+      </p-checkbox>
+    </div>
+    <ng-template [ngIf]="selectedValue">
+      <div>
+        <span class="mx-3">Номер карты</span>
+        <input type="text" class="mb-2" pInputText [(ngModel)]="cardNumber"/>
+
+      </div>
+    </ng-template>
+  </ng-template>
+  <button (click)="onAuth($event)" type="button" class="btn btn-success mt-3">{{authTextBtn}}</button>
+</div>
+

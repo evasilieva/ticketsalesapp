@@ -1,0 +1,93 @@
+<div class="d-flex flex-column col-4">
+  <div>
+    <ng-container *ngTemplateOutlet="userFieldLabel; context:{fieldLabelValue:'Логин', fieldName:'login'}">
+    </ng-container>
+    <label for="login" class="form-label">Логин</label>
+    <div class="input-group has-validation">
+      <input
+        type="text"
+        class="mb-2 form-control"
+        id="login"
+        pInputText
+        placeholder="login"
+        [ngClass]="{'is-invalid': !login}"
+        [(ngModel)]="login"/>
+    </div>
+  </div>
+  <div>
+    <ng-container *ngTemplateOutlet="userFieldLabel; context:{fieldLabelValue:'Пароль', fieldName:'password'}">
+    </ng-container>
+    <div class="input-group has-validation">
+      <input
+        type="password"
+        class="mb-2 form-control"
+        id="password"
+        pInputText
+        [ngClass]="{'is-invalid': !password}"
+        [(ngModel)]="password"/>
+    </div>
+  </div>
+
+
+
+  <div>
+    <ng-container *ngTemplateOutlet="userFieldLabel; context:{fieldLabelValue:'Повтор пароля', fieldName:'passwordConfirm'}">
+    </ng-container>
+    <div class="input-group has-validation">
+      <input
+        type="password"
+        class="mb-2 form-control"
+        id="passwordConfirm"
+        pInputText
+        [ngClass]="{'is-invalid': !passwordConfirm || passwordConfirm!== password}"
+        [(ngModel)]="passwordConfirm"/>
+    </div>
+  </div>
+
+  <div *ngIf="showCardNumber; else noSelected">
+    <ng-container *ngTemplateOutlet="userFieldLabel; context:{fieldLabelValue:'Номер карты', fieldName:'cardNumber'}">
+    </ng-container>
+    <div class="input-group has-validation">
+      <input
+        type="password"
+        class="mb-2"
+        id="cardNumber"
+        pInputText
+        [(ngModel)]="cardNumber"/>
+    </div>
+  </div>
+
+  <div>
+    <ng-container *ngTemplateOutlet="userFieldLabel; context:{fieldLabelValue:'Email', fieldName:'email'}">
+    </ng-container>
+    <div class="input-group has-validation">
+      <input
+        type="email"
+        class="mb-2"
+        id="email"
+        pInputText
+        [(ngModel)]="email"/>
+    </div>
+  </div>
+
+  <div>
+    <button
+      [disabled]="!login || !password || !passwordConfirm || password!==passwordConfirm"
+      (click)="register($event)"
+      type="button"
+      class="btn btn-success mt-3">
+      Зарегистрироваться
+    </button>
+  </div>
+</div>
+
+<ng-template #noSelected>
+  <div class="alert alert-warning" role="alert">
+    Карта не выбрана
+  </div>
+</ng-template>
+
+
+<ng-template #userFieldLabel let-fieldName="fieldName" let-fieldLabelValue="fieldLabelValue">
+  <label for="{{fieldName}}" class="form-label">{{fieldLabelValue}}</label>
+</ng-template>

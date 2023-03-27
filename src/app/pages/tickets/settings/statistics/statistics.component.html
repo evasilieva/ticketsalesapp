@@ -1,0 +1,15 @@
+<p-table [value]="users" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10]" [paginatorPosition]="'bottom'">
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let col of cols" [pSortableColumn]="col.field">{{col.header}}</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td *ngFor="let col of cols" [pSortableColumn]="col.field">
+        {{user[col.field]}}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
